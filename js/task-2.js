@@ -1,40 +1,30 @@
-const getUsersWithFriend = (users, friendName) => {
-  return users.filter(user => user.friends.includes(friendName));
-}
+const images = [
+        {
+          url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          alt: 'White and Black Long Fur Cat',
+        },
+        {
+          url: 'https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          alt: 'Orange and White Koi Fish Near Yellow Koi Fish',
+        },
+        {
+          url: 'https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          alt: 'Group of Horses Running',
+        },
+      ];
 
-const allUsers = [
-  {
-    name: "Moore Hensley",
-    friends: ["Sharron Pace"]
-  },
-  {
-    name: "Sharlene Bush",
-    friends: ["Briana Decker", "Sharron Pace"]
-  },
-  {
-    name: "Ross Vazquez",
-    friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"]
-  },
-  {
-    name: "Elma Head",
-    friends: ["Goldie Gentry", "Aisha Tran"]
-  },
-  {
-    name: "Carey Barr",
-    friends: ["Jordan Sampson", "Eddie Strong"]
-  },
-  {
-    name: "Blackburn Dotson",
-    friends: ["Jacklyn Lucas", "Linda Chapman"]
-  },
-  {
-    name: "Sheree Anthony",
-    friends: ["Goldie Gentry", "Briana Decker"]
-  }
-];
+      const gallery = document.querySelector('.gallery');
 
-console.log(getUsersWithFriend(allUsers, "Briana Decker")); 
+      const galleryItems = images.map((image) => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('gallery-item');
 
-console.log(getUsersWithFriend(allUsers, "Goldie Gentry"));
+        const img = document.createElement('img');
+        img.src = image.url;
+        img.alt = image.alt;
 
-console.log(getUsersWithFriend(allUsers, "Adrian Cross" ));
+        listItem.appendChild(img);
+        return listItem;
+      });
+
+      gallery.append(...galleryItems);
