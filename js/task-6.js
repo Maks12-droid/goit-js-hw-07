@@ -1,26 +1,35 @@
 const controls = document.querySelector('#controls');
 const boxesContainer = document.querySelector('#boxes');
 
-function createBoxes(amount) {
-  destroyBoxes(); // Очищення попередніх блоків
+function createBoxes() {
+  destroyBoxes(); 
   
-  const boxes = [];
-  let size = 30;
+  const amountInput = document.querySelector('input');
+  const amount = +amountInput.value;
 
-  for (let i = 0; i < amount; i += 1) {
-    const box = document.createElement('div');
-    box.style.width = `${size}px`;
-    box.style.height = `${size}px`;
-    box.style.backgroundColor = getRandomHexColor();
-    boxes.push(box);
-    size += 10;
+  if (amount >= 1 && amount <= 100) {
+    const boxes = [];
+    let size = 30;
+
+    for (let i = 0; i < amount; i += 1) {
+      const box = document.createElement('div');
+      box.style.width = `${size}px`;
+      box.style.height = `${size}px`;
+      box.style.backgroundColor = getRandomHexColor();
+      boxes.push(box);
+      size += 10;
+    }
+
+    boxesContainer.append(...boxes);
+    
+    amountInput.value = ''; 
+  } else {
+    alert('Please enter a number between 1 and 100.');
   }
-
-  boxesContainer.append(...boxes);
 }
 
 function destroyBoxes() {
-  boxesContainer.innerHTML = ''; // Очищення контейнера
+  boxesContainer.innerHTML = ''; 
 }
 
 function getRandomHexColor() {
@@ -29,8 +38,7 @@ function getRandomHexColor() {
 
 controls.addEventListener('click', event => {
   if (event.target.dataset.action === 'create') {
-    const amount = +controls.querySelector('input').value;
-    createBoxes(amount);
+    createBoxes();
   }
   if (event.target.dataset.action === 'destroy') {
     destroyBoxes();
